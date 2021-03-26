@@ -11,6 +11,18 @@
     "mobile",
     "sdk"
   ],
-  "author": "GBS Teknoloji Hizmetleri A.Ş.",
-  "license": "MIT"
+  "homepage": "https://github.com/wishoapp/react-native-wisho",
+  "bugs": {
+    "url": "https://github.com/wishoapp/react-native-wisho/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wishoapp/react-native-wisho.git"
+  },
+  "author": "GBS Teknoloji Hizmetleri A.Ş. <info@wishoapp.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  }
 }
