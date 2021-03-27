@@ -1,6 +1,6 @@
 {
   "name": "react-native-wisho",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Wisho React Native SDK",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,12 @@
   "keywords": [
     "react-native",
     "mobile",
-    "sdk"
+    "sdk",
+    "wisho",
+    "video",
+    "call"
   ],
-  "homepage": "https://github.com/wishoapp/react-native-wisho",
+  "homepage": "https://wishoapp.github.io/react-native-wisho",
   "bugs": {
     "url": "https://github.com/wishoapp/react-native-wisho/issues"
   },
