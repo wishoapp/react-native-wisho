@@ -1,6 +1,7 @@
 # react-native-wisho
 
 [![Build Status](https://www.travis-ci.com/wishoapp/react-native-wisho.svg?branch=main)](https://www.travis-ci.com/wishoapp/react-native-wisho)
+![NPM](https://img.shields.io/npm/l/react-native-wisho)
 ![npm](https://img.shields.io/npm/v/react-native-wisho)
 
 # Installation
