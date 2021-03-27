@@ -21,7 +21,7 @@ var wisho = new Wisho({
 });
 ```
 
-As you can see, credentials information provided while creating new instance of Iyzipay class.
+As you can see, credentials information provided while creating new instance of Wisho class.
 If you do not provide Wisho credentials, default values will be fetched from environment variables
 by following names.
 
