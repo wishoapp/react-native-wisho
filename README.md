@@ -7,6 +7,8 @@
 
 `npm i react-native-wisho --save`
 
+# Usage
+
 ### Initialization
 
 ```js
@@ -33,13 +35,19 @@ In other words, you can initialize Wisho object like following:
 var wisho = new Wisho();
 ```
 
-# Simple Usage
+### Sample Usage
 
 ```js
 import {WishoButton} from 'react-native-wisho';
 
 <WishoButton buttonText={'Call To Action'} />
 ```
+
+# Testing
+
+You need to have [jest](https://jestjs.io/) installed on your machine in order to run tests.
+
+`npm test`
 
 # Author
 
