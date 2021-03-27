@@ -1,14 +1,20 @@
-# react-native-wisho
+# Wisho React Native SDK
+
+[![NPM](https://nodei.co/npm/react-native-wisho.png)](https://nodei.co/npm/react-native-wisho/)
 
 [![Build Status](https://www.travis-ci.com/wishoapp/react-native-wisho.svg?branch=main)](https://www.travis-ci.com/wishoapp/react-native-wisho)
 ![NPM](https://img.shields.io/npm/l/react-native-wisho)
 ![npm](https://img.shields.io/npm/v/react-native-wisho)
 
-# Installation
+## Introduction
+
+Wisho React Native SDK allows your mobile users to make video calls with your sales consultants.
+
+## Installation
 
 `npm i react-native-wisho --save`
 
-# Usage
+## Usage
 
 ### Initialization
 
@@ -44,12 +50,20 @@ import {WishoButton} from 'react-native-wisho';
 <WishoButton buttonText={'Call To Action'} />
 ```
 
-# Testing
+## Testing
 
 You need to have [jest](https://jestjs.io/) installed on your machine in order to run tests.
 
 `npm test`
 
-# Author
+## Versions
+
+`react-native-wisho` uses a modified version of [Semantic Versioning](https://semver.org) for all changes.
+
+## Author
 
 Originally by [Wisho](https://github.com/wishoapp) (info@wishoapp.com). Now officially maintained by Wisho.
+
+## License
+
+Wisho React Native SDK is open-sourced software licensed under the [MIT license](LICENSE).
