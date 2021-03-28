@@ -50,9 +50,9 @@ import {WishoButton} from 'react-native-wisho';
 <WishoButton />
 ```
 
-#### WishoButton Props
+### API Preferences
 
-### Progress Steps Component
+#### WishoButton Props
 | Name                      | Description                         | Default                  | Type    |
 |---------------------------|-------------------------------------|--------------------------|---------|
 | backgroundColor           | Background color of the button      | #ff6500                  | String  |

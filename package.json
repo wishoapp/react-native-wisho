@@ -1,6 +1,6 @@
 {
   "name": "react-native-wisho",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Wisho React Native SDK",
   "main": "index.js",
   "scripts": {
