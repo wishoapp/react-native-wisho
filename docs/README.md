@@ -47,8 +47,20 @@ var wisho = new Wisho();
 ```js
 import {WishoButton} from 'react-native-wisho';
 
-<WishoButton buttonText={'Call To Action'} />
+<WishoButton />
 ```
+
+#### WishoButton Props
+
+### Progress Steps Component
+| Name                      | Description                         | Default                  | Type    |
+|---------------------------|-------------------------------------|--------------------------|---------|
+| backgroundColor           | Background color of the button      | #ff6500                  | String  |
+| borderWidth               | Border width of the button          | 1                        | Number  |
+| borderColor               | Outside border color for the button | rgba(255, 255, 255, 0.5) | String  |
+| textColor                 | Color of the button title           | #ffffff                  | String  |
+| textWeight                | Font weight of the button title     | 400                      | String  |
+| buttonText                | Text of the button                  | Connect via Wisho        | String  |
 
 ## Testing
 
