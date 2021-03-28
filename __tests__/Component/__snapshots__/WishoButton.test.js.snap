@@ -45,10 +45,11 @@ exports[`<WishoButton /> Wisho button renders correctly 1`] = `
           Object {
             "color": "#ffffff",
             "fontSize": 20,
+            "fontWeight": "400",
           },
           Object {
             "color": "#ffffff",
-            "fontWeight": undefined,
+            "fontWeight": "400",
           },
         ]
       }
