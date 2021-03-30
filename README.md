@@ -5,7 +5,8 @@
 [![Build Status](https://www.travis-ci.com/wishoapp/react-native-wisho.svg?branch=main)](https://www.travis-ci.com/wishoapp/react-native-wisho)
 ![NPM](https://img.shields.io/npm/l/react-native-wisho)
 ![npm](https://img.shields.io/npm/v/react-native-wisho)
-![David](https://img.shields.io/david/wishoapp/react-native-wisho)
+![Requires.io](https://img.shields.io/requires/github/wishoapp/react-native-wisho)
+![Codecov](https://img.shields.io/codecov/c/gh/wishoapp/react-native-wisho)
 
 ## Introduction
 
