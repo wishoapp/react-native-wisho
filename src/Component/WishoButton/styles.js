@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
       color: '#7b8098',
       letterSpacing: 0.55,
       borderWidth: 0,
+      fontWeight: 'bold'
     },
 });
 

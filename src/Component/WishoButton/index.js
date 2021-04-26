@@ -49,7 +49,7 @@ class WishoButton extends React.Component {
                 <View style={styles.modalContainer}>
                     <View style={styles.titleContainer}>
                     <Text style={styles.brandName}>{this.props.branches[0].brand.name}</Text>
-                    <Text style={styles.branchInfo}>{this.props.branches.length}</Text>
+                    <Text style={styles.branchInfo}>({props.branches.length})</Text>
                     </View>
                     <FlatList
                     data={this.props.branches}
