@@ -1,45 +1,4 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import styles from './styles';
-
-const WishoButton = (props) => {
-    return (
-        <TouchableOpacity onPress={props.onPress}>
-            <View
-                style={
-                    [
-                        styles.container,
-                        {
-                            backgroundColor: props.backgroundColor ?? styles.container.backgroundColor,
-                            borderWidth: props.borderWidth ?? styles.container.borderWidth,
-                            borderColor: props.borderColor ?? styles.container.borderColor,
-                        }
-                    ]
-                }>
-                <Text
-                    style={
-                        [
-                            styles.buttonText,
-                            {
-                                color: props.textColor ?? styles.buttonText.color,
-                                fontWeight: props.textWeight ?? styles.buttonText.fontWeight
-                            }
-                        ]
-                    }>
-                    {props.buttonText}
-                </Text>
-            </View>
-        </TouchableOpacity>
-    );
-}
-
-WishoButton.defaultProps = {
-    buttonText: 'Connect via Wisho',
-    buttonTextStyle: styles.buttonText
-}
-
-export default WishoButton;
-import React from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, Image, TouchableWithoutFeedback } from 'react-native';
 import styles from './styles';
 
@@ -89,8 +48,8 @@ class WishoButton extends React.Component {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.titleContainer}>
-                    <Text style={styles.brandName}>Karaca</Text>
-                    <Text style={styles.branchInfo}>{this.props.branches.lenght}</Text>
+                    <Text style={styles.brandName}>{this.props.branches[0].brand.name}</Text>
+                    <Text style={styles.branchInfo}>{this.props.branches.length}</Text>
                     </View>
                     <FlatList
                     data={this.props.branches}
