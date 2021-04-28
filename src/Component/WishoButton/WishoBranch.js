@@ -23,7 +23,7 @@ export default class WishoBranch extends Component {
                 </View>
             </View>
             <View style={styles.callContainer}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={this.props.bindUserToQueue}>
                 <Image
                     source={{uri: 'https://wisho.s3-eu-west-1.amazonaws.com/video_call.png'}}
                     style={styles.callImage}

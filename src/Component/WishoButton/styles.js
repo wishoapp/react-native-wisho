@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingTop: 15,
       bottom: 0,
-      position: 'absolute'
+      position: 'absolute',
+      borderTopColor: '#dcdeed',
+      borderWidth: 0.5
     },
     containerBranch: {
       width: width * 0.93,
@@ -108,6 +110,59 @@ const styles = StyleSheet.create({
       letterSpacing: 0.55,
       borderWidth: 0,
       fontWeight: 'bold'
+    },
+    queueContainer: {
+      alignItems: 'center',
+      height: height*0.3,
+      justifyContent: 'space-between',
+      marginBottom: height * 0.8
+    },
+    queueText: {
+      fontSize: height * 0.025,
+      fontWeight: 'bold',
+      color: '#ff6500',
+    },
+    closeButtonContainer: {
+      width: width*0.93,
+      height: height * 0.075,
+      backgroundColor: '#ff6500',
+      borderRadius: 10,
+      position: 'absolute',
+      bottom: height*0.01,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    closeButtonText: {
+      fontSize: height * 0.025,
+      color: 'white',
+      fontWeight: 'bold',
+    },
+    queueNumberContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: height * 0.16,
+      width: height * 0.16,
+      borderRadius: height * 0.08,
+      borderWidth: width * 0.02,
+      borderColor: '#dcdeed',
+    },
+    queueNumberText: {
+      fontSize: height * 0.05,
+      fontWeight: 'bold',
+      color: 'black',
+    },
+    quiteFromQueueContainer: {
+      width: width*0.35,
+      height: height * 0.04,
+      borderRadius: 10,
+      backgroundColor: 'rgba(0,0,0,0.5)',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    quiteFromQueueText: {
+      fontSize: height * 0.025,
+      fontWeight: 'bold',
+      color: '#f2f2f7',
     },
 });
 
