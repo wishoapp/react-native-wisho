@@ -3,6 +3,7 @@ import { View, Text, Modal, FlatList, TouchableWithoutFeedback } from 'react-nat
 import styles from './styles';
 import WishoBranch from './WishoBranch';
 import WishoQueueScreen from './WishoQueueScreen';
+import WishoService from '../../Lib/WishoService';
 
 export default class WishoModal extends Component {
   constructor(props) {
@@ -12,13 +13,27 @@ export default class WishoModal extends Component {
         loading: false,
         call_queue_id: null,
         queue_number: null,
-        branch_id: null
+        branch_id: null,
+        user_name: '',
+        password: '',
+        isBranchListExist: true,
+        branches: [],
     };
+
+    WishoService.fetchBranchesByBrandId(23)
+      .then(response => {
+        this.setState({
+          branches: response.branches,
+        });
+      });
   }
 
   bindUserToQueue = async () => {
     this.setState({clickedCall: true, loading: true});
-    this.goToQueue()
+    await this.fetchAvailableVoximplantService()
+      .then(response => this.setState({user_name : response.account.user_name}))
+      .catch(e => console.log(e));
+    await this.goToQueue()
       .then(response => {
         console.log(response);
         this.setState({loading: false, call_queue_id: response.call_queue_id, branch_id: response.branch_id}, () => this.getCurrentQueueState());
@@ -29,28 +44,16 @@ export default class WishoModal extends Component {
       })
   }
 
-  goToQueue = async () => {
-    const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/wisho-sdk/queue/bind',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          brand_id: this.props.branches[0].brand.id,
-          user_name: 'cihatt_tasci',
-          source_id: 3,
-        })
-      },
-    );
+  fetchAvailableVoximplantService = async () => {
+    return WishoService.fetchAvailableVoximplantService();
+  }
 
-    return await response.json();
+  goToQueue = async () => {
+    return WishoService.goToQueue(26, this.state.user_name);
   }
 
   getCurrentQueueState = () => {
-    //setInterval(() => {
+    setInterval(() => {
       this.fetchQueueState(this.state.branch_id, this.state.call_queue_id)
         .then(response => {
           console.log(response);
@@ -59,46 +62,16 @@ export default class WishoModal extends Component {
         .catch(e => {
           console.log(e);
         })
-    //}, 5000);
+    }, 1000);
   }
 
   fetchQueueState = async (branchId, queueStateId) => {
-    const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/wisho-sdk/queue/current-state',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          branch_id: branchId,
-          state_id: queueStateId,
-        })
-      },
-    );
-
-    return await response.json();
+    return WishoService.fetchQueueState(branchId, queueStateId)
   };
 
   quiteFromQueue = async () => {
     this.setState({clickedCall: false});
-    const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/wisho-sdk/queue/quit',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          branch_id: this.state.branch_id,
-          state_id: this.state.call_queue_id,
-        })
-      },
-    );
-
-    return await response.json();
+    WishoService.quiteFromQueue(this.state.branch_id, this.state.call_queue_id);
   };
 
   render() {
@@ -109,16 +82,16 @@ export default class WishoModal extends Component {
                 animationType={'slide'}
                 transparent={true}
                 onRequestClose={this.props.toggleModal}>
-                <View style={[styles.modalContainer, {justifyContent: this.props.isBranchListExist ? null : 'center'}]}>
+                <View style={[styles.modalContainer, {justifyContent: this.state.isBranchListExist ? null : 'center'}]}>
                     {
-                        this.props.isBranchListExist && !this.state.clickedCall ?
+                        this.state.isBranchListExist && !this.state.clickedCall ?
                         <View>
                           <View style={styles.titleContainer}>
                             <Text style={styles.brandName}>Karaca</Text>
-                            <Text style={styles.branchInfo}>({this.props.branches.length})</Text>
+                            <Text style={styles.branchInfo}>({this.state.branches.length})</Text>
                           </View>
                           <FlatList
-                              data={this.props.branches}
+                              data={this.state.branches}
                               renderItem = {({item}) => (
                                   <WishoBranch
                                       item={item}
@@ -129,7 +102,7 @@ export default class WishoModal extends Component {
                         </View>
                         :
                         <WishoQueueScreen
-                          branches={this.props.branches}
+                          branches={this.state.branches}
                           loading={this.state.loading}
                           quiteFromQueue={this.quiteFromQueue}
                           queueNumber={this.state.queue_number}

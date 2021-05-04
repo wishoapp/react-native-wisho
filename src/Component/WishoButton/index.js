@@ -45,8 +45,6 @@ class WishoButton extends React.Component {
             <WishoModal
                 branchListModal={this.state.branchListModal}
                 toggleModal={this.toggleModal}
-                branches={this.props.branches}
-                isBranchListExist={this.props.branchList}
             />
       </View>
     );
