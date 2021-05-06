@@ -1,6 +1,8 @@
+import {API_URL} from '../constant/domain';
+
 async function fetchBranchesByBrandId(brandId) {
     const response = await fetch(
-        'https://dev.penelope.wishoapp.com/api/wisho-sdk/' + brandId + '/branches',
+        API_URL + 'wisho-sdk/' + brandId + '/branches',
         {
           method: 'GET',
           headers: {
@@ -15,7 +17,7 @@ async function fetchBranchesByBrandId(brandId) {
 
 async function fetchAvailableVoximplantService() {
     const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/wisho-sdk/service-accounts/available',
+      API_URL + 'wisho-sdk/service-accounts/available',
       {
         method: 'POST',
         headers: {
@@ -30,7 +32,7 @@ async function fetchAvailableVoximplantService() {
 
  async function goToQueue(brandId, userName) {
     const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/wisho-sdk/queue/bind',
+      API_URL + 'wisho-sdk/queue/bind',
       {
         method: 'POST',
         headers: {
@@ -50,7 +52,7 @@ async function fetchAvailableVoximplantService() {
 
  async function fetchQueueState(branchId, queueStateId) {
     const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/queue/current-state',
+      API_URL + 'queue/current-state',
       {
         method: 'POST',
         headers: {
@@ -70,7 +72,7 @@ async function fetchAvailableVoximplantService() {
 
  async function quiteFromQueue(branchId, stateId) {
     const response = await fetch(
-      'https://dev.penelope.wishoapp.com/api/wisho-sdk/queue/quit',
+      API_URL + 'wisho-sdk/queue/quit',
       {
         method: 'POST',
         headers: {
