@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme';
-import WishoModal from "../../src/Component/WishoModal";
+import WishoModal from '../../src/Component/WishoButton/WishoModal';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -14,17 +14,17 @@ describe('<WishoModal />', () => {
     });
 
     it('Wisho modal has state by passing props correctly', () => {
-        const tree = shallow(<WishoModal branchListModal={'Find State'} />);
-        expect(tree.find('Modal').at(0).dive().text()).toEqual('Find State');
+        const tree = shallow(<WishoModal branchListModal={<View/>} />);
+        expect(tree.find('Modal').at(0).dive().text()).toEqual(<View/>);
     });
 
     it('Wisho modal has function by passing props correctly', () => {
-        const tree = shallow(<WishoModal toggleModal={'Got function'} />);
-        expect(tree.find('Modal').at(0).dive().text()).toEqual('Got function');
+        const tree = shallow(<WishoModal toggleModal={<View/>} />);
+        expect(tree.find('Modal').at(0).dive().text()).toEqual(<View/>);
     });
 
     it('Wisho modal has array by passing props correctly', () => {
-        const tree = shallow(<WishoModal branches={'Find obje and array'} />);
-        expect(tree.find('FlatList').at(0).dive().text()).toEqual('Find obje and array');
+        const tree = shallow(<WishoModal branches={<VirtualizedList />} />);
+        expect(tree.find('FlatList').at(0).dive().text()).toEqual(<VirtualizedList />);
     });
 });

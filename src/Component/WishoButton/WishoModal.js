@@ -28,12 +28,12 @@ export default class WishoModal extends Component {
       });
   }
 
-  bindUserToQueue = async () => {
+  bindUserToQueue = () => {
     this.setState({clickedCall: true, loading: true});
-    await this.fetchAvailableVoximplantService()
+    this.fetchAvailableVoximplantService()
       .then(response => this.setState({user_name : response.account.user_name}))
       .catch(e => console.log(e));
-    await this.goToQueue()
+    this.goToQueue()
       .then(response => {
         console.log(response);
         this.setState({loading: false, call_queue_id: response.call_queue_id, branch_id: response.branch_id}, () => this.getCurrentQueueState());
@@ -44,11 +44,11 @@ export default class WishoModal extends Component {
       })
   }
 
-  fetchAvailableVoximplantService = async () => {
+  fetchAvailableVoximplantService = () => {
     return WishoService.fetchAvailableVoximplantService();
   }
 
-  goToQueue = async () => {
+  goToQueue = () => {
     return WishoService.goToQueue(26, this.state.user_name);
   }
 
