@@ -1,41 +1,173 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import WishoCameraScreen from 'react-native-wisho/src/Component/WishoButton/WishoCameraScreen';
 import styles from './styles';
+import WishoModal from './WishoModal';
 
-const WishoButton = (props) => {
+class WishoButton extends React.Component {
+  state = {
+    branchListModal: false,
+    isCameraModalOpen:false
+  }
+
+  toggleModal = () => {
+    this.setState({branchListModal: !this.state.branchListModal});
+  }
+
+  toggleCameraModal = () => {
+    this.setState({isCameraModalOpen: !this.state.isCameraModalOpen});
+  }
+
+  render() {
     return (
-        <TouchableOpacity onPress={props.onPress}>
-            <View
-                style={
-                    [
-                        styles.container,
-                        {
-                            backgroundColor: props.backgroundColor ?? styles.container.backgroundColor,
-                            borderWidth: props.borderWidth ?? styles.container.borderWidth,
-                            borderColor: props.borderColor ?? styles.container.borderColor,
-                        }
-                    ]
-                }>
-                <Text
+        <View>
+            <TouchableOpacity onPress={this.toggleCameraModal}>
+                <View
                     style={
                         [
-                            styles.buttonText,
+                            styles.container,
                             {
-                                color: props.textColor ?? styles.buttonText.color,
-                                fontWeight: props.textWeight ?? styles.buttonText.fontWeight
+                                backgroundColor: this.props.backgroundColor ?? styles.container.backgroundColor,
+                                borderWidth: this.props.borderWidth ?? styles.container.borderWidth,
+                                borderColor: this.props.borderColor ?? styles.container.borderColor,
                             }
                         ]
                     }>
-                    {props.buttonText}
-                </Text>
-            </View>
-        </TouchableOpacity>
+                    <Text
+                        style={
+                            [
+                                styles.buttonText,
+                                {
+                                    color: this.props.textColor ?? styles.buttonText.color,
+                                    fontWeight: this.props.textWeight ?? styles.buttonText.fontWeight
+                                }
+                            ]
+                        }>
+                        {this.props.buttonText}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+
+            <WishoModal
+                branchListModal={this.state.branchListModal}
+                toggleModal={this.toggleModal}
+                toggleCameraModal={this.toggleCameraModal}
+            />
+
+            <WishoCameraScreen
+                isCameraModalOpen={this.state.isCameraModalOpen}
+                toggleCameraModal={this.toggleCameraModal}
+            />
+        </View>
     );
+  }
 }
 
 WishoButton.defaultProps = {
     buttonText: 'Connect via Wisho',
-    buttonTextStyle: styles.buttonText
+    buttonTextStyle: styles.buttonText,
+    branchList: true
 }
 
 export default WishoButton;
+
+
+/*import React from 'react';
+import { View, Text, TouchableOpacity, Modal, FlatList, Image, TouchableWithoutFeedback } from 'react-native';
+import styles from './styles';
+
+class WishoButton extends React.Component {
+  state = {
+    branchListModal: false
+  }
+
+  toggleModal = () => {
+    this.props.branchList ? this.setState({branchListModal: !this.state.branchListModal}) : null;
+  }
+
+  render() {
+    return (
+        <View>
+                <TouchableOpacity onPress={this.toggleModal}>
+                <View
+                    style={
+                        [
+                            styles.container,
+                            {
+                                backgroundColor: this.props.backgroundColor ?? styles.container.backgroundColor,
+                                borderWidth: this.props.borderWidth ?? styles.container.borderWidth,
+                                borderColor: this.props.borderColor ?? styles.container.borderColor,
+                            }
+                        ]
+                    }>
+                    <Text
+                        style={
+                            [
+                                styles.buttonText,
+                                {
+                                    color: this.props.textColor ?? styles.buttonText.color,
+                                    fontWeight: this.props.textWeight ?? styles.buttonText.fontWeight
+                                }
+                            ]
+                        }>
+                        {this.props.buttonText}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+            <Modal
+                visible={this.state.branchListModal}
+                animationType={'slide'}
+                transparent={true}
+                onRequestClose={this.toggleModal}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.titleContainer}>
+                    <Text style={styles.brandName}>{this.props.branches[0].brand.name}</Text>
+                    <Text style={styles.branchInfo}>{this.props.branches.length}</Text>
+                    </View>
+                    <FlatList
+                    data={this.props.branches}
+                    renderItem = {({item}) => (
+                        <View key={item.id} style={styles.containerBranch}>
+                        <View style={styles.logoContainer}>
+                            <Image
+                            source={{
+                                uri: item.brand.logo_url,
+                            }}
+                            style={styles.logo}
+                            resizeMode={'cover'}
+                            />
+                        </View>
+                        <View style={styles.content}>
+                            <View style={styles.brand}>
+                            <Text style={styles.branchName}>
+                                {item.address}, {item.city.name}
+                            </Text>
+                            </View>
+                        </View>
+                        <View style={styles.callContainer}>
+                            <TouchableWithoutFeedback>
+                            <Image
+                                source={{uri: 'https://wisho.s3-eu-west-1.amazonaws.com/video_call.png'}}
+                                style={styles.callImage}
+                            />
+                            </TouchableWithoutFeedback>
+                        </View>
+                        </View>
+                    )}
+                    />
+                </View>
+            </Modal>
+      </View>
+    );
+  }
+}
+
+WishoButton.defaultProps = {
+    buttonText: 'Connect via Wisho',
+    buttonTextStyle: styles.buttonText,
+    branchList: true
+}
+
+export default WishoButton;
+*/
