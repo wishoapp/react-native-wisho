@@ -15,7 +15,6 @@ function Wisho(config) {
         apiKey: config.apiKey || process.env.WISHO_API_KEY,
         secretKey: config.secretKey || process.env.WISHO_SECRET_KEY
     };
-
     this._validateWishoOptions(this._config);
 }
 
