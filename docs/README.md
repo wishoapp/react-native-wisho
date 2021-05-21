@@ -16,6 +16,8 @@ Wisho React Native SDK allows your mobile users to make video calls with your sa
 
 `npm i react-native-wisho --save`
 
+`If you want to use messaging actively, you must install react-native-firebase-messaging`
+
 ## Usage
 
 ### Initialization
