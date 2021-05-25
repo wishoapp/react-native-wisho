@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WishoModal /> Wisho modal renders in wisho modal 1`] = `
+<View>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#f2f2f7",
+            "borderTopColor": "#dcdeed",
+            "borderTopLeftRadius": 20.10723860589812,
+            "borderTopRightRadius": 20.10723860589812,
+            "borderWidth": 0.5,
+            "bottom": 0,
+            "height": 667,
+            "paddingTop": 15,
+            "position": "absolute",
+            "width": 750,
+          },
+          Object {
+            "justifyContent": null,
+          },
+        ]
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderWidth": 0,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "borderWidth": 0,
+                "color": "#7b8098",
+                "fontSize": 15,
+                "letterSpacing": 0,
+                "marginRight": 5,
+              }
+            }
+          >
+            Karaca
+          </Text>
+          <Text
+            style={
+              Object {
+                "borderWidth": 0,
+                "color": "#7b8098",
+                "fontSize": 12,
+                "fontWeight": "bold",
+                "letterSpacing": 0.55,
+              }
+            }
+          >
+            (
+            0
+            )
+          </Text>
+        </View>
+        <RCTScrollView
+          data={Array []}
+          disableVirtualization={false}
+          getItem={[Function]}
+          getItemCount={[Function]}
+          horizontal={false}
+          initialNumToRender={10}
+          keyExtractor={[Function]}
+          maxToRenderPerBatch={10}
+          onContentSizeChange={[Function]}
+          onEndReachedThreshold={2}
+          onLayout={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          removeClippedSubviews={false}
+          renderItem={[Function]}
+          scrollEventThrottle={50}
+          stickyHeaderIndices={Array []}
+          updateCellsBatchingPeriod={50}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={21}
+        >
+          <View />
+        </RCTScrollView>
+      </View>
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ff6500",
+            "borderRadius": 10,
+            "bottom": 13.34,
+            "height": 100.05,
+            "justifyContent": "center",
+            "position": "absolute",
+            "width": 697.5,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 33.35,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Kapat
+        </Text>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;

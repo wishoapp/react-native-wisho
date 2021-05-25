@@ -1,41 +1,72 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import WishoCameraScreen from 'react-native-wisho/src/Component/WishoButton/WishoCameraScreen';
 import styles from './styles';
+import WishoModal from './WishoModal';
 
-const WishoButton = (props) => {
+class WishoButton extends React.Component {
+  state = {
+    branchListModal: false,
+    isCameraModalOpen:false
+  }
+
+  toggleModal = () => {
+    this.setState({branchListModal: !this.state.branchListModal});
+  }
+
+  toggleCameraModal = () => {
+    this.setState({isCameraModalOpen: !this.state.isCameraModalOpen});
+  }
+
+  render() {
     return (
-        <TouchableOpacity onPress={props.onPress}>
-            <View
-                style={
-                    [
-                        styles.container,
-                        {
-                            backgroundColor: props.backgroundColor ?? styles.container.backgroundColor,
-                            borderWidth: props.borderWidth ?? styles.container.borderWidth,
-                            borderColor: props.borderColor ?? styles.container.borderColor,
-                        }
-                    ]
-                }>
-                <Text
+        <View>
+            <TouchableOpacity onPress={this.toggleCameraModal}>
+                <View
                     style={
                         [
-                            styles.buttonText,
+                            styles.container,
                             {
-                                color: props.textColor ?? styles.buttonText.color,
-                                fontWeight: props.textWeight ?? styles.buttonText.fontWeight
+                                backgroundColor: this.props.backgroundColor ?? styles.container.backgroundColor,
+                                borderWidth: this.props.borderWidth ?? styles.container.borderWidth,
+                                borderColor: this.props.borderColor ?? styles.container.borderColor,
                             }
                         ]
                     }>
-                    {props.buttonText}
-                </Text>
-            </View>
-        </TouchableOpacity>
+                    <Text
+                        style={
+                            [
+                                styles.buttonText,
+                                {
+                                    color: this.props.textColor ?? styles.buttonText.color,
+                                    fontWeight: this.props.textWeight ?? styles.buttonText.fontWeight
+                                }
+                            ]
+                        }>
+                        {this.props.buttonText}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+
+            <WishoModal
+                branchListModal={this.state.branchListModal}
+                toggleModal={this.toggleModal}
+                toggleCameraModal={this.toggleCameraModal}
+            />
+
+            <WishoCameraScreen
+                isCameraModalOpen={this.state.isCameraModalOpen}
+                toggleCameraModal={this.toggleCameraModal}
+            />
+        </View>
     );
+  }
 }
 
 WishoButton.defaultProps = {
     buttonText: 'Connect via Wisho',
-    buttonTextStyle: styles.buttonText
+    buttonTextStyle: styles.buttonText,
+    branchList: true
 }
 
 export default WishoButton;
