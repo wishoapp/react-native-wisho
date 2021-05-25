@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text, Modal, Image, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
+import WishoCartModal from './WishoCartModal';
 import styles from './styles';
+import {Voximplant} from 'react-native-voximplant';
 
 export default class WishoCameraScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
         message: '',
+        isCartOpen: false
     };
   }
 
   sendMessage = () => {
-      console.log(this.state.message);
+    console.log(this.state.message);
   }
 
   hangup = () => {
-      this.props.toggleCameraModal()
+    this.props.client.disconnect();
+    this.props.toggleCameraModal();
   }
 
   render() {
@@ -26,8 +30,14 @@ export default class WishoCameraScreen extends Component {
                 animationType={'slide'}
                 transparent={true}>
                 <View style={styles.cameraModalContainer}>
-
                     <View styles={styles.topContainer}>
+                        <View style={{flex: 1}}>
+                            <Voximplant.VideoView
+                                style={styles.remoteVideo}
+                                videoStreamId={this.props.remoteVideoStreamId}
+                                scaleType={Voximplant.RenderScaleType.SCALE_FILL}
+                            />
+                        </View>
                         <View style={styles.topBrandInfoContainer}>
                             <View style={styles.avatarContainer}>
                                 <Image
@@ -58,7 +68,12 @@ export default class WishoCameraScreen extends Component {
 
                         <View style={styles.videoContainer}>
                             <View>
-                                
+                                <Voximplant.VideoView
+                                    style={styles.selfview}
+                                    videoStreamId={this.props.localVideoStreamId}
+                                    scaleType={Voximplant.RenderScaleType.SCALE_FILL}
+                                    showOnTop={true}
+                                />
                             </View>
                             <View style={styles.voxChangeEventContainer}>
                                 <TouchableOpacity>
@@ -83,7 +98,7 @@ export default class WishoCameraScreen extends Component {
 
                     <View style={styles.bottomContainer}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({isCartOpen: !this.state.isCartOpen})}>
                                 <View style={[styles.actionButtonContainer, { backgroundColor: '#ff6500'}]}>
                                     <Image
                                         source={require('../../static/cart.png')}
@@ -107,7 +122,7 @@ export default class WishoCameraScreen extends Component {
                                     />
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.sendVideo()}>
                                 <View style={[styles.actionButtonContainer, { backgroundColor: '#007aed'}]}>
                                     <Image
                                         source={require('../../static/camera.png')}
@@ -139,8 +154,12 @@ export default class WishoCameraScreen extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-
+                    
                 </View>
+                <WishoCartModal
+                    isVisible={this.state.isCartOpen}
+                    toggleModal={() => this.setState({isCartOpen: !this.state.isCartOpen})}
+                />
             </Modal>
         </SafeAreaView>
     );

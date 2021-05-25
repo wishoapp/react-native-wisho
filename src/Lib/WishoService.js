@@ -52,13 +52,12 @@ async function fetchAvailableVoximplantService() {
 
  async function fetchQueueState(branchId, queueStateId) {
     const response = await fetch(
-      API_URL + 'queue/current-state',
+      API_URL + 'wisho-sdk/queue/current-state',
       {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'GAIA-TOKEN': 'abc'
         },
         body: JSON.stringify({
           branch_id: branchId,

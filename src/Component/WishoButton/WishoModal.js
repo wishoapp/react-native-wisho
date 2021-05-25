@@ -18,6 +18,7 @@ export default class WishoModal extends Component {
         password: '',
         isBranchListExist: true,
         branches: [],
+        isEmployeeAvailable: true
     };
 
     WishoService.fetchBranchesByBrandId(23)
@@ -28,28 +29,36 @@ export default class WishoModal extends Component {
       });
   }
 
-  bindUserToQueue = () => {
+  bindUserToQueue = async () => {
     this.setState({clickedCall: true, loading: true});
     this.fetchAvailableVoximplantService()
-      .then(response => this.setState({user_name : response.account.user_name}))
-      .catch(e => console.log(e));
-    this.goToQueue()
       .then(response => {
-        console.log(response);
-        this.setState({loading: false, call_queue_id: response.call_queue_id, branch_id: response.branch_id}, () => this.getCurrentQueueState());
+        this.setState({user_name : response.account.user_name, password: response.account.password}, () => {
+          this.props.startVox(this.state.user_name, this.state.password)
+          this.goToQueue()
+            .then(response => {
+              if (response.has_queue_exceeded) {
+                this.setState({isEmployeeAvailable: false});
+              } else {
+                this.setState({isEmployeeAvailable: true});
+              }
+              this.setState({loading: false, call_queue_id: response.call_queue_id, branch_id: response.branch_id}, () => this.getCurrentQueueState());
+            })
+            .catch(e => {
+              console.log(e)
+              this.setState({loading: false})
+            })
+        })
       })
-      .catch(e => {
-        console.log(e)
-        this.setState({loading: false})
-      })
+      .catch(e => console.log(e));
   }
 
-  fetchAvailableVoximplantService = () => {
+  fetchAvailableVoximplantService = async () => {
     return WishoService.fetchAvailableVoximplantService();
   }
 
-  goToQueue = () => {
-    return WishoService.goToQueue(26, this.state.user_name);
+  goToQueue = async () => {
+    return WishoService.goToQueue(23, this.state.user_name);
   }
 
   getCurrentQueueState = () => {
@@ -73,6 +82,10 @@ export default class WishoModal extends Component {
     this.setState({clickedCall: false});
     WishoService.quiteFromQueue(this.state.branch_id, this.state.call_queue_id);
   };
+
+  toggleClickedCall = () => {
+    this.setState({clickedCall: !this.state.clickedCall});
+  }
 
   render() {
     return (
@@ -106,6 +119,10 @@ export default class WishoModal extends Component {
                           loading={this.state.loading}
                           quiteFromQueue={this.quiteFromQueue}
                           queueNumber={this.state.queue_number}
+                          isIncomingCallExist={this.props.isIncomingCallExist}
+                          isEmployeeAvailable={this.state.isEmployeeAvailable}
+                          answer={this.props.answer}
+                          toggleClickedCall={this.toggleClickedCall}
                         />
                     }
                     <TouchableWithoutFeedback onPress={this.props.toggleModal}>
